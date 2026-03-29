@@ -723,7 +723,12 @@ function openWhatsApp(){
   window.open('https://wa.me/916379488599?text='+msg,'_blank');
 }
 function openLinkedIn(){window.open('https://linkedin.com/in/kuberalakshmi-k','_blank');}
-function downloadResume(){window.open('./resume.pdf','_blank');}
+function downloadResume(){
+  var printWindow=window.open('','','width=800,height=600');
+  printWindow.document.write(document.querySelector('.reshtml').innerHTML);
+  printWindow.document.close();
+  setTimeout(function(){printWindow.print();},250);
+}
 window.addEventListener('scroll',function(){
   var p=(window.scrollY/(document.body.scrollHeight-window.innerHeight))*100;
   document.getElementById('prog').style.width=p+'%';
